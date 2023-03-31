@@ -22,13 +22,13 @@ const ExpenseForm = ({ isEditing, onCancel, onSubmit, defaultValues }) => {
   const submitHandler = () => {
     const expenseData = {
       amount: +inputs.amount.value,
-      date: new Date(inputs.date).value,
+      date: new Date(inputs.date.value),
       description: inputs.description.value,
     };
     const amountIsValid =
       !isNaN(expenseData?.amount) && expenseData?.amount > 0;
     const dateIsValid =
-      expenseData.date && expenseData.date?.toString() !== "Invalid Date";
+      expenseData.date && expenseData.date?.toISOString() !== "Invalid Date";
     const descriptionIsValid = expenseData.description?.trim().length > 0;
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
       setInputs((prev) => {
